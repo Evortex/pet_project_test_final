@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>AI Creative Platform</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/static/assets/css/main.css"/>
+    <link rel="stylesheet" href="/static/assets/css/project_page.css"/>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<div id="header">
+
+    <div class="top">
+
+        <!-- Logo -->
+        <div id="logo">
+            <span class="image avatar48"><img src="/static/test.png" alt=""/></span>
+            <h1 id="title">AI<br>CREATIVE<br>PLATFROM</h1>
+            <p>Лучшие решения в одном месте</p>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="/" id="top-link"><span class="icon solid fa-home">Главная</span></a></li>
+                <li><a href="/project" id="portfolio-link"><span class="icon solid fa-th">Проекты</span></a>
+                </li>
+                <li><a href="/#about" id="about-link"><span class="icon solid fa-user">О платформе</span></a>
+                </li>
+                <li><a href="/#contact" id="contact-link"><span class="icon solid fa-envelope">Контакты</span></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="bottom">
+
+        <!-- Social Icons -->
+        <ul class="icons">
+            <li><a href="https://t.me/ylab_v_it" class="icon brands fa-telegram"><span class="label">Telegram</span></a>
+            </li>
+            <li><a href="https://vk.com/public221855135" class="icon brands fa-vk"><span class="label">VK</span></a>
+            </li>
+            <li><a href="mailto:info@aicreativeplatform.com" class="icon solid fa-envelope"><span
+                    class="label">Email</span></a></li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- Main -->
+<div id="main">
+    {% block content %}
+
+    <!-- Intro -->
+    <section id="top" class="one dark cover">
+        <div class="container">
+
+            <header>
+                <h2 class="alt">{{ project.name }}</h2>
+            </header>
+
+            <footer>
+                <a href="/project" class="button scrolly">Назад</a>
+            </footer>
+
+        </div>
+    </section>
+
+    <!-- Project -->
+    <section id="projects" class="two">
+        <div class="container">
+            <div class="content">
+
+                <div class="project" style="background-color:rgba(35, 43, 56, 0.1);">
+                    <p>
+                    <h3>{{ project.name }}</h3><br/>
+                    <b>Описание:</b> {{ project.description }}<br/>
+                    <div class="author">
+                        <span>{{ project.category }}</span>
+                        <span>{{ project.author }}</span>
+                        <span>{{ project.created_at.strftime("%B %d, %Y") }}</span>
+                    </div>
+                    <div class="chat-block">
+                        <p style="opacity: 0.3">Chat with AI</p>
+                        {% for chat_message in project.messages %}
+                        <span class="chat-message">
+                            {{ chat_message.message.replace("\n", "<br/>")|safe }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <form action="/project/{{ project.id }}/gpt" class="project-form" method="post">
+                        <textarea class="project-form-textarea" name="gpt_request"></textarea>
+                        <button class="submit" type="submit">Отправить</button>
+                    </form>
+                    <a href="/project/{{ project.id }}/update" class="edit">Редактировать</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<div id="footer">
+
+    <!-- Copyright -->
+    <ul class="copyright">
+        <li>&copy; AI CREATIVE PLATFORM 2023. All rights reserved.</li>
+        <li>Данный сервис является вымышленным</li>
+    </ul>
+
+    {% endblock %}
+</div>
+
+<!-- Scripts -->
+<script src="{{ url_for('static', path='/assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/jquery.scrolly.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/jquery.scrollex.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/browser.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/main.js') }}"></script>
+
+</body>
+</html>

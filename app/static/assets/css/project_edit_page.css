@@ -1,0 +1,37 @@
+.project {
+  padding: 12px 24px;
+  position: relative;
+  border-radius: 12px;
+}
+
+.form-delete {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: end;
+}
+
+.form-delete > .button-delete {
+  padding: 0 12px;
+  background-color: #ff6767;
+}
+
+.form-delete > .button-delete:hover {
+  background-color: #ff9898;
+}
+
+.form-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.form-field > b {
+  min-width: 120px;
+  text-align: left;
+}
