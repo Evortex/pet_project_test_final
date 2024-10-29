@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>AI Creative Platform</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/static/assets/css/main.css"/>
+    <link rel="stylesheet" href="/static/assets/css/project_edit_page.css"/>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<div id="header">
+
+    <div class="top">
+
+        <!-- Logo -->
+        <div id="logo">
+            <span class="image avatar48"><img src="/static/test.png" alt=""/></span>
+            <h1 id="title">AI<br>CREATIVE<br>PLATFROM</h1>
+            <p>Лучшие решения в одном месте</p>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="/" id="top-link"><span class="icon solid fa-home">Главная</span></a></li>
+                <li><a href="/project" id="portfolio-link"><span class="icon solid fa-th">Проекты</span></a>
+                </li>
+                <li><a href="/#about" id="about-link"><span class="icon solid fa-user">О платформе</span></a>
+                </li>
+                <li><a href="/#contact" id="contact-link"><span class="icon solid fa-envelope">Контакты</span></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="bottom">
+
+        <!-- Social Icons -->
+        <ul class="icons">
+            <li><a href="https://t.me/ylab_v_it" class="icon brands fa-telegram"><span class="label">Telegram</span></a>
+            </li>
+            <li><a href="https://vk.com/public221855135" class="icon brands fa-vk"><span class="label">VK</span></a>
+            </li>
+            <li><a href="mailto:info@aicreativeplatform.com" class="icon solid fa-envelope"><span
+                    class="label">Email</span></a></li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- Main -->
+<div id="main">
+    {% block content %}
+
+    <!-- Intro -->
+    <section id="top" class="one dark cover">
+        <div class="container">
+
+            <header>
+                <h2 class="alt">{{ project.name }}</h2>
+            </header>
+
+            <footer>
+                <a href="/project/{{ project.id }}" class="button scrolly">Назад</a>
+            </footer>
+
+        </div>
+    </section>
+
+    <!-- Project -->
+    <section id="projects" class="two">
+        <div class="container">
+            <div class="content">
+                <div class="project" style="background-color:rgba(35, 43, 56, 0.1);">
+                    <form action="/project/{{ project.id }}/delete" class="form-delete" method="post">
+                        <input type="submit" class="button-delete" value="Удалить"/>
+                    </form>
+                    <form action="/project/{{ project.id }}/update" class="form-edit" method="post">
+                        <div class="form-field">
+                            <b>Название:</b>
+                            <input type="text" name="name" value="{{ project.name }}">
+                        </div>
+
+                        <div class="form-field">
+                            <b>Автор:</b>
+                            <input type="text" name="author" value="{{ project.author }}"/>
+                        </div>
+
+                        <div class="form-field">
+                            <b>Категория:</b>
+                            <select name="category">
+                                <option value="{{ project.category }}">{{ project.category }}</option>
+                                <option value="Проект">Проект</option>
+                                <option value="Идея">Идея</option>
+                                <option value="Бизнес-кейс">Бизнес-кейс</option>
+                                <option value="Работа с кодом">Работа с кодом</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <b>Описание:</b>
+                            <textarea name="description">{{ project.description }}</textarea>
+                        </div>
+
+                        <input type="submit" value="Сохранить"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<div id="footer">
+
+    <!-- Copyright -->
+    <ul class="copyright">
+        <li>&copy; AI CREATIVE PLATFORM 2023. All rights reserved.</li>
+        <li>Данный сервис является вымышленным</li>
+    </ul>
+
+    {% endblock %}
+</div>
+
+<!-- Scripts -->
+<script src="{{ url_for('static', path='/assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/jquery.scrolly.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/jquery.scrollex.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/browser.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', path='/assets/js/main.js') }}"></script>
+
+</body>
+</html>

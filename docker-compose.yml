@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+
+  web:
+    #  Имя контейнера.
+    container_name: main
+    build:
+      #  Путь к папке с Dockerfile.
+      context: .
+      #  Имя файла сборки.
+      dockerfile: Dockerfile
+    ports:
+      #  Открываем порт 8080 на хост-машине.
+      - "8080:8080"
+    depends_on:
+      #  Зависимость от контейнера с базой данных.
+      - postgres
+    #  Файл с переменными окружения.
+    env_file: .env.local
+
+  postgres:
+    #  Имя контейнера.
+    container_name: postgres
+    #  Образ контейнера.
+    image: postgres:13
+    # Перезапускать контейнер всегда, кроме случаев, когда он остановлен явно.
+    restart: unless-stopped
+    environment:
+      # Имя базы данных.
+      POSTGRES_DB: ai_creative_platform
+      # Имя пользователя.
+      POSTGRES_USER: ${POSTGRES_USER:-ai_creative_platform_user}
+      # Пароль пользователя.
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-5555}
+    ports:
+      # Открываем порт 5432 на хост-машине.
+      - '5432:5432'
+    volumes:
+      # Монтируем папку с данными в контейнер.
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
