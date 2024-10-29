@@ -14,6 +14,7 @@
 
 4. В качестве root директории укажи `app`.
 
+
 5. В качестве build команды укажи приведенный ниже набор.
 Дело в том, что мы собираем окружение с нуля, и нам приходится устанавливать множество компонентов.
 ```
@@ -32,7 +33,7 @@ pip install pipenv && pip install uvicorn && pip install importlib-resources && 
 ```
 postgres:// -> postgresql+psycopg2://
 ```
-
+postgresql+psycopg2://db_project_pet_user:gYQDLSUryv95ci2R7AEOXmAt17LOPGh5@dpg-csgejhhu0jms738vnk8g-a.frankfurt-postgres.render.com/dbprojectpet
 9. Вернись в проект веб-сервиса и во вкладке Environment добавь переменную POSTGRES_DB_URL с ранее скопированным значением.
 
 10. Также добавь переменную API_KEY со значением ключа, который ты использовал в предыдущем уроке.
